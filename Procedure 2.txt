@@ -1,0 +1,108 @@
+create or replace procedure p1(a in int, b in varchar2)
+is
+begin
+if a between 5 and 15 then 
+dbms_output.put_line('Within range');
+end if;
+if a in (5,15,12,25) then 
+dbms_output.put_line('Within my values);
+end if;
+if b like '%dr' then 
+dbms_output.put_line('True');
+end if;
+if b like '%mb%' then
+dbms_output.put_line('True');
+end if;
+end;
+/
+
+CREATE OR REPLACE PROCEDURE greet_employee
+(emp_name IN VARCHAR2)
+IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Hello, ' || emp_name || '!');
+END;
+/
+
+-- Calling it
+BEGIN
+    greet_employee('Krishtina');
+END;
+/
+
+CREATE OR REPLACE PROCEDURE get_emp_salary
+(emp_id IN NUMBER, emp_salary OUT NUMBER)
+IS
+BEGIN
+    SELECT salary INTO emp_salary
+    FROM emp12
+    WHERE employee_id = emp_id;
+END;
+/
+
+-- Calling it
+DECLARE
+    sal NUMBER;
+BEGIN
+    get_emp_salary(101, sal);
+    DBMS_OUTPUT.PUT_LINE('Salary: ' || sal);
+END;
+/
+
+CREATE OR REPLACE PROCEDURE increment_salary
+(emp_id IN NUMBER, bonus IN OUT NUMBER)
+IS
+BEGIN
+    UPDATE emp12
+    SET salary = salary + bonus
+    WHERE employee_id = emp_id;
+
+    bonus := bonus * 2; -- Modify bonus value for caller
+END;
+/
+
+-- Calling it
+DECLARE
+    extra NUMBER := 1000;
+BEGIN
+    increment_salary(101, extra);
+    DBMS_OUTPUT.PUT_LINE('Updated Bonus Value: ' || extra);
+END;
+/
+
+CREATE OR REPLACE FUNCTION square_num(n IN NUMBER)
+RETURN NUMBER
+IS
+    result NUMBER;
+BEGIN
+    result := n * n;
+    RETURN result;
+END;
+/
+DECLARE
+    num NUMBER := 6;
+    sqr NUMBER;
+BEGIN
+    sqr := square_num(num); -- call function
+    DBMS_OUTPUT.PUT_LINE('Square of ' || num || ' is ' || sqr);
+END;
+/
+
+create or replace function get_smallest_row
+return number
+is
+val number;
+sm_salary number;
+begin
+select salary into sm_salary from emp12 order by salary asc fetch first row only;
+val := sm_salary + sm_salary * 0.1;
+update emp12 set salary = val where salary = sm_salary;
+return val;
+end;
+/
+
+begin
+dbms_output.put_line('Smallest Salary is updated = ' || get_smallest_row());
+end;
+/
+

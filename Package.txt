@@ -1,0 +1,83 @@
+CREATE OR REPLACE PACKAGE simple_pkg IS
+	max_limit CONSTANT NUMBER := 3;
+	counter NUMBER;
+	CURSOR emp_cur IS 
+	SELECT name,address,salary FROM employee_01;
+	PROCEDURE display_employees;
+END simple_pkg;
+/
+
+
+CREATE OR REPLACE PACKAGE BODY simple_pkg IS
+	PROCEDURE display_employees IS
+		emp_rec emp_cur%ROWTYPE;
+	BEGIN
+		counter := 0;
+		OPEN emp_cur;
+		LOOP
+			FETCH emp_cur INTO emp_rec;
+			EXIT WHEN emp_cur%NOTFOUND;       
+			counter := counter + 1;
+			DBMS_OUTPUT.PUT_LINE('Employee ' || counter || ': ' || emp_rec.name);
+		END LOOP;
+		CLOSE emp_cur;
+        DBMS_OUTPUT.PUT_LINE('Total employees displayed: ' || counter);
+    	END display_employees;
+END simple_pkg;
+/
+
+
+DECLARE
+    v_current_count NUMBER;
+    v_limit NUMBER;
+BEGIN
+    simple_pkg.display_employees;
+
+    v_current_count := simple_pkg.counter;
+    DBMS_OUTPUT.PUT_LINE('Value of counter after procedure call: ' || v_current_count);
+
+    v_limit := simple_pkg.max_limit;
+    DBMS_OUTPUT.PUT_LINE('Value of Constant: ' || v_limit);
+END;
+/
+
+CREATE OR REPLACE PACKAGE emp_pkg IS
+	FUNCTION get_salary(p_emp_id NUMBER) RETURN NUMBER;
+	PROCEDURE update_salary(p_emp_id NUMBER,p_new_salary NUMBER);
+END emp_pkg;
+/
+
+
+
+CREATE OR REPLACE PACKAGE BODY emp_pkg IS
+	FUNCTION get_salary(p_emp_id NUMBER) RETURN NUMBER IS 
+    	v_salary NUMBER;
+	BEGIN
+    		SELECT salary INTO v_salary FROM employee_01 WHERE id = p_emp_id;
+    		RETURN v_salary;
+	END get_salary;
+
+	PROCEDURE update_salary(p_emp_id NUMBER,p_new_salary NUMBER) IS
+	BEGIN
+    		UPDATE employee_01 SET salary = p_new_salary WHERE id = p_emp_id;
+    		DBMS_OUTPUT.PUT_LINE('Salary updated for Employee ' || p_emp_id);
+	END update_salary;
+END emp_pkg;
+/
+
+
+
+DECLARE
+    current_salary NUMBER;
+    new_salary NUMBER;
+    v_emp_id NUMBER := 1;
+BEGIN
+    current_salary := emp_pkg.get_salary(v_emp_id);
+    DBMS_OUTPUT.PUT_LINE('Employee ' || v_emp_id || ' current salary: ' || current_salary);
+    emp_pkg.update_salary(v_emp_id, 65000);
+
+    new_salary := emp_pkg.get_salary(v_emp_id);
+    DBMS_OUTPUT.PUT_LINE('Employee ' || v_emp_id || ' new salary: ' || new_salary);
+    emp_pkg.update_salary(v_emp_id, 80000);
+END;
+/

@@ -1,0 +1,54 @@
+select * from employee_01;
+
+-- table based record
+declare 
+my_row employee_01%rowtype;
+
+begin 
+
+select * into my_row from employee_01 where id = 3;
+dbms_output.put_line('Record : ' || my_row.name);
+
+end;
+
+/
+
+-- // Cursor based record
+
+declare
+cursor get_name is select * from employee_01;
+
+name_person get_name%ROWTYPE;
+
+begin
+open get_name;
+loop
+fetch get_name into name_person;
+exit when get_name%notfound;
+dbms_output.put_line('Cursor Based Record : ' || name_person.name);
+
+end loop;
+
+close get_name;
+
+end;
+
+/
+
+
+
+-- // user defined record
+
+declare
+type name_person is record
+(
+	name varchar2(200)
+);
+name_record name_person;
+begin
+select name into name_record from employee_01 where id = 2;
+dbms_output.put_line('Name : ' || name_record.name);
+end;
+
+/
+
