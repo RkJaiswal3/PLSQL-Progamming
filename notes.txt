@@ -1,0 +1,95 @@
+1. For inner joint
+
+select * from emp E join salary S on E.id = S.id;
+
+select E.name, E.DOB, E.address from emp E join salary S on E.id = S.id;
+if id is same then we can use ---- using(id) against --on
+
+
+2. For outer join
+--in left join the data of intersection of same also can retrieve.
+
+select E.name, E.DOB, E.address from emp E left join salary S on E.id = S.id;
+
+select E.name, E.DOB, E.address from emp E right join salary S on E.id = S.id;
+
+select E.name, E.DOB, E.address from emp E full join salary S on E.id = S.id;
+
+
+
+3. Self join
+
+select e1.name as employee, e2.name as manager form emps e1 join emps e2 on e1.manager_id = e2.emp_id;
+
+4. cross join
+
+select E.name, E.DOB, E.address from emp E cross join salary S on E.id = S.id;
+
+5.append        (It add to previous with the new one command lin23q.)
+6./
+7. list or l'
+8. change /2/1/ or syntax : (/old value/new value) change /id/name
+9. input where id = 1; (It add the new line).
+10. change related: Notes
+
+change /id/name
+
+if the line is in third then I first fixed asterisk on first line so for that I input
+
+1
+command
+
+and change it by using 
+
+change /id/name
+
+11.del
+it delete the current line or which line should be delete then we give command 
+
+del <line no.>
+like: del 2
+
+12. clear buffer;
+    It clear the buffer.
+
+
+13. For getting max id from given table so for that we use following command:
+
+select * from k where id = (select max(id) from k);
+
+
+14. For getting data from table and storing in into that variable so we execute following command:
+SQL> declare
+  2  name_ca varchar2(20);
+  3  begin
+  4  select name into name_ca from k where id=1;
+  5  dbms_output.put_line(name_ca);
+  6  end;
+  7  /
+15. using els condition we can apply following command
+
+DECLARE
+    a INT := &val;
+BEGIN
+    IF a >= 90 THEN
+        DBMS_OUTPUT.PUT_LINE('A');
+    ELSIF a >= 80 THEN
+        DBMS_OUTPUT.PUT_LINE('B');
+    ELSIF a >= 70 THEN
+        DBMS_OUTPUT.PUT_LINE('C');
+    ELSIF a >= 60 THEN
+        DBMS_OUTPUT.PUT_LINE('D');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('F');
+    END IF;
+END;
+/
+
+16.
+
+
+ 
+
+
+
+

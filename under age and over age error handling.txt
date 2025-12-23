@@ -1,0 +1,24 @@
+//user define exception
+
+
+declare
+age int := 15;
+underAge EXCEPTION;
+overAge EXCEPTION;
+begin
+if age < 18 then
+	raise underAge;
+end if;
+if age > 60 then
+	raise overAge;
+end if;
+dbms_output.put_line('Your age is : ' || age);
+
+	exception
+	when underAge then
+		dbms_output.put_line('You are underage !');
+	when overAge then
+		dbms_output.put_line('You are over age !');
+
+end;
+/

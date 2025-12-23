@@ -1,0 +1,8 @@
+Nested Record
+Instead of trigger
+Nested cursor for loop
+parameterized cursor
+exception init, raise exception
+Repetetive control,
+
+exception pragma advanced concept of exception.

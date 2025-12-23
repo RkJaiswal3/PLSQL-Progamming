@@ -1,0 +1,43 @@
+CREATE TABLE emp (
+    id NUMBER PRIMARY KEY,
+    name VARCHAR2(50),
+    salary NUMBER
+);
+/
+
+		
+
+
+DECLARE
+  CURSOR my_salary IS 
+  SELECT salary FROM employees;
+  salary_details my_salary%ROWTYPE;
+  sum int;
+  percentage int;
+  diff int;
+BEGIN
+sum := 0;
+percentage := 0;
+
+
+  OPEN my_salary;
+  LOOP
+    	FETCH my_salary INTO salary_details;
+    	EXIT WHEN my_salary%NOTFOUND;
+	sum := sum + salary_details.salary;
+	percentage := sum + sum * 0.10;
+	DBMS_OUTPUT.PUT_LINE('Percentage salary = ' || percentage);
+  END LOOP;
+	
+	diff := percentage - sum;
+	DBMS_OUTPUT.PUT_LINE('Sum of salary = ' || sum);
+	DBMS_OUTPUT.PUT_LINE('Difference of salary = ' || diff);
+
+  CLOSE my_salary;
+END;
+/
+
+
+
+
+

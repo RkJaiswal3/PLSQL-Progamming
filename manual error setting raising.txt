@@ -1,0 +1,10 @@
+BEGIN
+raise_application_error(-20123, 'Hfjalsdjglk'); 	
+EXCEPTION
+WHEN OTHERS THEN
+	dbms_output.put_line(SQLCODE);
+	dbms_output.put_line(SQLERRM);
+
+END;
+
+/

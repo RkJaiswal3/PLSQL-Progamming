@@ -1,0 +1,34 @@
+create function demo(a in number)
+
+
+return varchar2;
+
+is 
+begin 
+if mod(a, 2) == 0 then
+
+return 'even';
+
+else
+
+return 'odd';
+
+endif;
+
+end demo;
+
+/
+
+declare
+
+a varchar2(20);
+
+begin
+
+a := demo(5);
+
+dbms_ouptut.put_line(a);
+
+end;
+
+/

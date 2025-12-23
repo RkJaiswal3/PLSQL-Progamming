@@ -1,0 +1,94 @@
+// Function is a named PL/SQL block that performs a specific task.
+
+
+// Syntax:
+
+create or replace function function_name(parameters)
+return return_datatype
+is/as
+	//declaration for function 
+begin
+	//execution code
+end;
+/ 
+
+
+// For example
+
+create or replace function cal_tax(salary in number)
+return number
+is
+tax number;
+
+begin
+if salary <=1000 then 
+	tax := salary * 2;
+else 
+	tax := salary * 4;
+end if;
+return tax;
+end;
+/
+
+begin 
+dbms_output.put_line(cal_tax(45000));
+end;
+/
+
+
+// Program to return by OUT carry method
+
+create or replace function my_id_val(my_val out number)
+return number;
+as
+id_val number  := 15;
+idx number;
+begin
+idx := id_val ** 2;
+new_val := id_val;
+return idx;
+end;
+/	
+
+declare
+x number;
+being
+dbms_output.put_line(my_id_val(x));
+dbms_output.put_line(x);
+end;
+/
+
+
+
+// To display updated smallest salary from table std.
+
+
+->select salary into sm_salary from <table_name> order by salary asc fetch first row only
+
+
+->update <table_name> set salary = sm_salary where salary = 5000;
+
+create or replace function get_smallest_row
+return number
+is
+val number;
+sm_salary number;
+begin
+select salary into sm_salary from std order by salary asc fetch first row only;
+val := sm_salary + sm_salary * 0.1;
+update std set salary = val where salary = sm_salary;
+return val;
+end;
+/
+
+begin
+dbms_output.put_line(get_smallest_row());
+end;
+/
+
+
+
+
+
+
+

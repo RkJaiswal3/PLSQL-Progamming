@@ -1,0 +1,25 @@
+declare
+a int := 5;
+b int := 10;
+c int := 89;
+x int;
+
+begin
+
+x = a;
+
+if b > x then
+
+	x = b;
+	
+end if;
+
+if c > x then
+
+x = c;
+
+dbms_output.put_line('Greatest number is ' || x);
+
+end if;
+
+

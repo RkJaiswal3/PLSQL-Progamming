@@ -1,0 +1,13 @@
+declare
+a int := &n1;
+begin
+case a
+when 80 then
+dbms_output.put_line('Good');
+when 90 then
+dbms_output.put_line('Excellent');
+else
+dbms_output.put_line('Fail');
+END case;
+end;
+/

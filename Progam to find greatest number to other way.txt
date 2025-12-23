@@ -1,0 +1,26 @@
+declare 
+n1 int := 30;
+n2 int := 56;
+n3 int :=20;
+
+begin
+if n1 > n2 then 
+	if n1 > n3 then
+		dbms_output.put_line('Greatest number is ' || n1);
+	else
+		dbms_output.put_line('Greatest number is ' || n3);
+	end if;
+
+else
+	if n2 > n3 then
+		dbms_output.put_line('Greatest number is ' || n2);
+	else
+		dbms_output.put_line('Greatest number is ' || n3);
+	end if;
+end if;
+
+
+end;
+/
+
+

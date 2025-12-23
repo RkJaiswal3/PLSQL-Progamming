@@ -1,0 +1,100 @@
+// It is a reusable block of code that contains business logic. It can pass parameter but do not return any value. 
+
+Syntax:
+
+create or replace procedure procedure_name
+IS/AS
+	variable_declaration
+BEGIN
+ 	Executable Statement
+EXCEPTION
+	Handle Exception
+END;
+/
+
+Program:
+
+create or replace procedure  abc
+is 
+begin
+dbms_output.put_line('Hello world !');
+end;
+/
+
+begin 
+abc();
+end;
+/
+
+
+//I can also write a procedure within procedure.
+
+
+
+//exec is use to execute the procedure like : exec procedure_name;
+
+//For drop
+
+Drop Procedure procedure_name;
+
+
+//Mode of Parameter.
+
+IN MODE
+create or replace procedure  abc(x in DataType)
+
+OUT MODE
+
+create or replace procedure  abc 
+
+IN OUT MODE
+
+
+//%abc or abc% means any data is there before merlo and after merlo
+
+// program that show different query performing 
+
+create or replace procedure p1(a in int, b in varchar2)
+is
+begin
+if a between 5 and 15 then 
+dbms_output.put_line('Within range');
+end if;
+if a in (5,15,12,25) then 
+dbms_output.put_line('Within my values);
+end if;
+if b like '%dr' then 
+dbms_output.put_line('True');
+end if;
+if b like '%mb%' then
+dbms_output.put_line('True');
+end if;
+end;
+/
+
+BEGIN 
+  p1(2, 'hdrmbr');  
+END;
+/
+
+// getting input and performing the output data
+
+create or replace procedure get_double_value(input_value IN int, output_value OUT int)
+is 
+begin
+output_value := input_value * 2;
+
+end;
+
+/
+
+declare
+a int := 10;
+b int;
+
+begin
+get_double_value(a, b);
+dbms_output.put_line('The input number is ' || a || ' and the output value is ' || b);
+end;
+/
+

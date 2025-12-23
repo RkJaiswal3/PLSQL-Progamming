@@ -1,0 +1,13 @@
+//Factorial Code
+
+declare
+fact_value int := 4;
+num int := 1;
+
+begin
+for i in 1..fact_value loop
+num := num * i;
+end loop;
+dbms_output.put_line(num);
+end;
+/

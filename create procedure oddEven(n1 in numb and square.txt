@@ -1,0 +1,39 @@
+create procedure oddEven(n1 in number, n2 out number)
+is
+begin
+	if mod(n1, 2) == 0 then
+		n2 := 'Even';
+	else
+		n2 := 'Odd';
+
+	end if;
+
+end;
+
+/
+
+declare
+result number;
+begin
+	oddEven(5, result);
+	dbms_output.put_line('The given number is --' || result);
+end;
+
+/
+
+--square number
+
+create procedure square(n1 in number)
+is
+result number;
+begin	
+	result := n1 * n1;
+	dbms_output.put_line('The given number is --' || result);
+end;
+/
+
+declare
+begin
+	square(5);	
+end;
+/

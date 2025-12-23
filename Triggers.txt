@@ -1,0 +1,33 @@
+// Triggers
+
+
+// Syntax:
+
+create [or replace] trigger trigger_name
+{before | After | instead of }
+{insert [or] | update [or] | delete}
+[of column_name]
+on table_name || or may in view
+[referencing OLD AS o NEW AS n]
+[FOR EACH ROW]
+WHEN(condition)
+
+DECLARE
+	--Declaration Statement
+BEGIN 
+	--Block of executable code
+END;
+
+
+// ROW LEVEL TRIGGER
+
+IF impact is something greter
+
+
+// STATEMENT LEVEL TRIGGER
+
+
+// Different between row level trigger and statement level trigger.
+
+
+

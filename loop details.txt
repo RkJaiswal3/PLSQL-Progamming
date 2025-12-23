@@ -1,0 +1,30 @@
+Basic infinite loop.
+
+declare 
+a int := 7;
+
+begin 
+	
+loop
+	dbms_output.put_line(a+1);
+end loop;
+
+end;
+/
+
+declare
+a int :=&n1;
+
+begin 
+
+loop
+
+a := a + 1;
+dbms_output.put_line('Hello');
+Exit when a > 10;
+
+end loop;
+
+end;
+/
+

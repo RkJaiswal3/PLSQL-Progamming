@@ -1,0 +1,35 @@
+DECLARE 
+CURSOR abc(a number) IS
+SELECT * FROM emp where sal > a;
+
+my_row emp%ROWTYPE;
+
+BEGIN
+OPEN abc(5000);
+LOOP
+FETCH abc INTO my_row;
+exit when abc%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE(my_row.name);
+
+END LOOP;
+
+CLOSE abc;
+END;
+/
+
+// simple example of cursor implicit
+
+declare 
+name varchar2(20);
+begin
+select name into name from emp where id = 1;
+if sql%found then 
+dbms_output.put_line('Row found ' || sql%rowcount);
+
+else
+DBMS_OUTPUT.PUT_LINE('Nothing found !');
+end if;
+
+end;
+/
+

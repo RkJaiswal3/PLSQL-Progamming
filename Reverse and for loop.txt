@@ -1,0 +1,98 @@
+//using IN
+
+create or replace procedure palidron(a in varchar2)
+is
+b varchar2(50);
+begin
+
+
+for i in Reverse 1..length(a) 
+loop
+ b := b || substr(a, i, 1);
+
+end loop;
+
+if lower(a) = lower(b) then
+	dbms_output.put_line(a || ' is a palidrone');
+else
+dbms_output.put_line(a || 'is not a palidrone');
+
+end if;
+
+end;
+/
+
+begin
+palidron('level');
+end;
+
+/
+
+
+//Using OUT
+
+create or replace procedure palidron(a in varchar2, c out varchar2)
+is
+b varchar2(50);
+begin
+
+
+for i in Reverse 1..length(a) 
+loop
+ b := b || substr(a, i, 1);
+
+end loop;
+
+if lower(a) = lower(b) then
+	c := a || ' is a palindron !';
+	
+else
+	c := a || ' is not a palindron !';
+end if;
+
+end;
+/
+
+declare
+input varchar2(50) := 'level';
+output varchar2(50);
+
+begin 
+
+palidron(input, output);
+dbms_output.put_line(output);
+
+end;
+/
+
+
+//using INOUT
+
+create or replace procedure palidron(a in out varchar2)
+is
+b varchar2(50);
+begin
+for i in Reverse 1..length(a) 
+loop
+ b := b || substr(a, i, 1);
+end loop
+if lower(a) = lower(b) then
+	a := a || ' is a palindron !';
+	
+else
+	a := a || ' is not a palindron !';
+end if;
+
+end;
+/
+
+declare
+words varchar2(50) := 'level';
+begin 
+palidron(words);
+dbms_output.put_line(words);
+end;
+/
+
+Sarad Bhandari Om networks.
+9801043598 

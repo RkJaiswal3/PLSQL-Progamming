@@ -1,0 +1,14 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+  x INT;
+BEGIN
+  FOR x IN 1..10 LOOP
+    IF MOD(x, 2) = 0 THEN
+      CONTINUE;
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE('Odd value is ' || x);
+  END LOOP;
+END;
+/

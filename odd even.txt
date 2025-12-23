@@ -1,0 +1,39 @@
+declare 
+
+num int := &n1;
+
+begin
+if mod(num,2) = 0 then
+num := num + 2;
+else 
+num := num + 1;
+end if;
+
+dbms_output.put_line(num);
+
+for i in 1..4 loop
+num := num + 2;
+dbms_output.put_line(num);
+
+end loop;
+
+end;
+/
+
+
+//another way 
+
+declare 
+num int  := &n1;
+
+begin
+for i in 1..4 loop
+if mod(num,2) = 0 then
+num := num + 2;
+else 
+num := num + 1;
+end if;
+dbms_output.put_line(num);
+end loop;
+end;
+/

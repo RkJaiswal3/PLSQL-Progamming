@@ -1,0 +1,16 @@
+declare
+
+a int := &n1;
+
+begin 
+case
+when a > 5 then
+	dbms_output.put_line('A');
+when a < 5 then
+	dbms_output.put_line('B');
+else
+	dbms_output.put_line('C');
+end case;
+
+end;
+/
